@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-const ONE_SIGNAL_APP_ID = 'a95344ea-1552-45da-ab76-75bdddbfb937';
+const ONE_SIGNAL_APP_ID = '25dd4296-7fc9-475e-8fd9-76ade13e630a';
 const ONE_SIGNAL_REST_API_KEY =
-  'OWVlZDcyMjYtZmExYS00OTU0LThhMWUtMWNlMTA1MjFiZGZi';
+  'NzhmNjgyYmUtMDFkOC00ODZhLWEyM2QtN2FiNzM0YTRiM2Yx';
 
 export const sendNotification = async (
   userId: string,
   valorTitleInput: string,
   valorMsgInput: string,
   valor: string,
-  largeIcon: string,
 ) => {
   const oneSignalApiUrl = 'https://onesignal.com/api/v1/notifications';
   const headers = {
@@ -17,19 +16,13 @@ export const sendNotification = async (
     Authorization: `Basic ${ONE_SIGNAL_REST_API_KEY}`,
   };
 
-  if (largeIcon === '') {
-    largeIcon =
-      'https://play-lh.googleusercontent.com/VJOW3rillBsN_OOH-U7DHesvzjinqNNceRBeCFpzXa7rOahD5LUb4YAhV7QQvwzFYgs';
-  }
-
   const data = {
     app_id: ONE_SIGNAL_APP_ID,
     include_player_ids: [userId],
     headings: {en: valorTitleInput},
     contents: {
-      en: `${valorMsgInput} ${valor}`,
+      en: `${valorMsgInput} ${valor}.`,
     },
-    large_icon: largeIcon,
   };
 
   try {

@@ -15,9 +15,8 @@ import {getStatus, sendNotification} from './api';
 const App = () => {
   const [valorInput, setValorInput] = useState('');
   const [valorTitleInput, setValorTitleInput] = useState('');
-  const [largeIcon, setLargeIcon] = useState('');
   const [valorMsgInput, setValorMsgInput] = useState('');
-  const [playerid, setplayerid] = useState('123');
+  const [playerid, setplayerid] = useState('');
 
   const styleBody = StyleSheet.create({
     container: {
@@ -86,7 +85,7 @@ const App = () => {
   });
 
   const handleButtonPress = async () => {
-    OneSignal.setAppId('a95344ea-1552-45da-ab76-75bdddbfb937');
+    OneSignal.setAppId('25dd4296-7fc9-475e-8fd9-76ade13e630a');
 
     try {
       const deviceState = await OneSignal.getDeviceState();
@@ -104,7 +103,6 @@ const App = () => {
           valorTitleInput,
           valorMsgInput,
           valorInput,
-          largeIcon,
         );
         if (result === 1) {
           Alert.alert('Sucesso', 'Notificação foi enviada!');
@@ -120,7 +118,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    OneSignal.setAppId('a95344ea-1552-45da-ab76-75bdddbfb937');
+    OneSignal.setAppId('25dd4296-7fc9-475e-8fd9-76ade13e630a');
     OneSignal.setLogLevel(6, 0);
     OneSignal.sendTag('success', '0');
     OneSignal.promptForPushNotificationsWithUserResponse(response => {
@@ -152,11 +150,11 @@ const App = () => {
   return (
     <SafeAreaView style={styleBody.container}>
       <Image
-        source={require('./images/kiwify-icon.jpg')}
+        source={require('./images/nubank-icon.png')}
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={stylesTitle.container}>Crie sua notificação Kiwify</Text>
+      <Text style={stylesTitle.container}>Crie sua notificação Nubank</Text>
 
       <TouchableOpacity
         onPress={() => {
@@ -189,13 +187,7 @@ const App = () => {
         multiline={true}
         numberOfLines={1}
       />
-      <TextInput
-        style={stylesMessageInput.input}
-        placeholder="url Icone"
-        onChangeText={url => setLargeIcon(url)}
-        multiline={true}
-        numberOfLines={1}
-      />
+
       <TouchableOpacity
         style={stylesButton.buttonContainer}
         onPress={handleButtonPress}>
